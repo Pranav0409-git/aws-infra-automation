@@ -1,7 +1,7 @@
 resource "aws_vpc" "my_vpc" {
     cidr_block = var.vpc_cidr
     tags = {
-      name = "Test-vpc"
+      Name = "Test-vpc"
     }
   
 }
@@ -13,7 +13,7 @@ resource "aws_subnet" "public" {
     map_public_ip_on_launch = true
 
     tags = {
-      name = "public_subnet-${count.index + 1}"
+      Name = "public_subnet-${count.index + 1}"
     }
 }
 resource "aws_subnet" "private" {
@@ -23,7 +23,7 @@ resource "aws_subnet" "private" {
     availability_zone = var.azs[count.index]
 
     tags = {
-      name = "private_subnet-${count.index + 1}"
+      Name = "private_subnet-${count.index + 1}"
     }
   
 }
