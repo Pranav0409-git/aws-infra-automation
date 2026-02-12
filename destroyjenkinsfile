@@ -7,12 +7,6 @@ pipeline {
 
   stages {
 
-    stage('Checkout') {
-      steps {
-        git 'https://github.com/Pranav0409-git/aws-infra-automation.git'
-      }
-    }
-
     stage('Terraform Init') {
       steps {
         withAWS(credentials: 'aws-cred', region: 'us-east-1') {
