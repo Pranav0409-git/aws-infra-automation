@@ -9,7 +9,7 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        git 'https://github.com/aws-infra-automation/aws-terraform-infra.git'
+        git 'https://github.com/Pranav0409-git/aws-infra-automation.git'
       }
     }
 
