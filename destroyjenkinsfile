@@ -1,0 +1,33 @@
+pipeline {
+  agent any
+
+  environment {
+    AWS_DEFAULT_REGION = 'us-east-1'
+  }
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        git 'https://github.com/Pranav0409-git/aws-infra-automation.git'
+      }
+    }
+
+    stage('Terraform Init') {
+      steps {
+        withAWS(credentials: 'aws-cred', region: 'us-east-1') {
+          sh 'terraform init'
+        }
+      }
+    }
+
+    stage('Terraform Destroy') {
+      steps {
+        withAWS(credentials: 'aws-cred', region: 'us-east-1') {
+          sh 'terraform destroy -auto-approve'
+        }
+      }
+    }
+
+  }
+}
