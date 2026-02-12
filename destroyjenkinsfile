@@ -7,6 +7,15 @@ pipeline {
 
   stages {
 
+    stage('Copy State File') {
+      steps {
+        sh '''
+          cp /var/lib/jenkins/workspace/terraform-infra-build/terraform.tfstate .
+          cp /var/lib/jenkins/workspace/terraform-infra-build/terraform.tfstate.backup .
+        '''
+      }
+    }
+    
     stage('Terraform Init') {
       steps {
         withAWS(credentials: 'aws-cred', region: 'us-east-1') {
